@@ -1,7 +1,7 @@
 import pystan
 import edward
 import numpy as np
-import helper_funcs as hf
+import mod_helper_funcs as hf
 import pandas as pd
 import pickle
 from matplotlib import pyplot as plt
@@ -79,9 +79,11 @@ advi_coef_dict["T"] = 1
 advi_coef_dict["y"] = stock_data
 
 # get sample from results. Returns Stan4FitModel object
-print("\n\n\nHERE\n\n\n")
-fitted_model = model.sampling(data=advi_coef_dict, iter=1000)
-print("\n\n\nHERE\n\n\n")
+print("\n\nIssues\n\n")
+fitted_model = model.sampling(data=advi_coef_dict, 
+                              iter=1000,
+                              sample_file='./fitted_output.csv',
+                              verbose=True)
 
 # plot it
 fitted_model.plot()
